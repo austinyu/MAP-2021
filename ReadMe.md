@@ -63,7 +63,7 @@ At the beginning of each match, $happiness_{curr}$ is set to zero. For each inte
 
 At the beginning of each match, `anger_curr` is set to 1. For each interaction, if $r >= r_{exp}$, `anger_curr -= 2/v_i` . 
 
-If anger value from previous match is positive, `anger_marker = 1`, else `anger_marker = 0`. 
+If anger value from previous match is positive, `anger_marker = 1`, else `anger_marker = 0`. 
 
 ### Sadness 
 
@@ -73,7 +73,7 @@ If anger value from previous match is positive, `anger_marker = 1`, else `ange
 - `sadness_marker`: a value calculated from sadness value from the previous match 
 - `sadness_curr`: sadness value for interactions in current match
 
-At the beginning of each match, `sadness_curr` is set to 0. For each interaction, `sadness_curr -= 1/v_i`  if  `r > 0`, else  `sadness_curr += 1/v_i`  
+At the beginning of each match, `sadness_curr` is set to 0. For each interaction, `sadness_curr -= 1/v_i`  if  `r > 0`, else  `sadness_curr += 1/v_i`  
 
 If sadness value from previous match is positive, `sadness_marker = 1`, else `sadness_marker = 0`. 
 
@@ -94,51 +94,35 @@ For each match, surprise is updated according to the above formula.
 - `surprise`: surprise emotion value
 - `disgust_marker`: a value calculated from disgust value from the previous match 
 
-If `disgust_prev` from previous match is positive, `disgust_marker = 1`, else `disgust_marker = -1`. 
+If `disgust_prev` from previous match is positive, `disgust_marker = 1`, else `disgust_marker = -1`. 
 
 # Result
 
-Because of setup of the experiment, if there is a defecting neighbor at beginning of the simulation, every agent will defect and die eventually. Cascading failure happens because each cooperating agent tends to defect to emulate a higher immediate reinforcement, but eventually it will die because its could not receive any reinforcement from its neighbors who also choose to defect. Eventually the entire network is dead. A evolution of a network with a defecting agent sitting at the center is below. 
+Because of setup of the experiment, if there is a defecting neighbor at beginning of the simulation, every agent will defect and die eventually. Cascading failure happens because each cooperating agent tends to defect to emulate a higher immediate reinforcement, but eventually it will die because its could not receive any reinforcement from its neighbors who also choose to defect. Eventually the entire network is dead. A evolution of a network with a defecting agent sitting at the center is below for `T_i = 0.5`. 
 
 | Match 0                                                      | Match 17                                                     | Match 29                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![image-20210829165904030](assets/image-20210829165904030.png) | ![image-20210829165937882](assets/image-20210829165937882.png) | ![image-20210829170021392](assets/image-20210829170021392.png) |
 
-The proportion of agents that are cooperators, defectors, and dead are shown below. 
+To play around with parameters, we choose three values for `Ti`, which controls the survival threshold of agents in the network. 
 
-![image-20210829171547352](assets/image-20210829171547352.png)
+- `Status Graph` describes the proportion of agents beging cooporators, defectors, or dead agents throughout the matches. 
+- `Total Reinforcement Graph` illustrate the total reinforcement received by all cooporators, defectors. Maximum possible reinforcement is achieved when assuming that all agents in the network are cooporators. 
+- `Average Reinforcement Graph` illustrate the average reinforcement received by all cooporators, defectors. Maximum possible reinforcement is achieved when assuming that all agents in the network are cooporators. 
+- `Average Fear Graph`  is the graph of average fear emotion versus matches 
+- `Average Happiness Graph`  is the graph of average happiness emotion versus matches 
+- `Average Sadness Graph`  is the graph of average sadness emotion versus matches 
+- `Average Surprise Graph`  is the graph of average surprise emotion versus matches 
+- `Average Disgust Graph`  is the graph of average disgust emotion versus matches 
 
-Total and average reinforcement at each match is also plotted. Maximum possible reinforcement is the total reinforcement for the entire network if all the alive agents cooperate. 
-
-![image-20210829171813396](assets/image-20210829171813396.png)
-
-![image-20210829171825181](assets/image-20210829171825181.png)
-
-The evolutions of emotional values are also shown below. 
-
-![image-20210829184055649](assets/image-20210829184055649.png)
-
-![image-20210829184104735](assets/image-20210829184104735.png)
-
-![image-20210829184114167](assets/image-20210829184114167.png)
-
-![image-20210829184124889](assets/image-20210829184124889.png)
-
-![image-20210829184136845](assets/image-20210829184136845.png)
-
-![image-20210829184148592](assets/image-20210829184148592.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Graph                    | $T_i = 0.25$                                                 | $T_i = 0.5$                                                  | $ T_i = 0.75$                                                |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Status Graph             | ![image-20210901131415849](assets/image-20210901131415849.png) | ![image-20210901131347784](assets/image-20210901131347784.png) | ![image-20210901131445693](assets/image-20210901131445693.png) |
+| Total Reinforcement      | ![image-20210901131653255](assets/image-20210901131653255.png) | ![image-20210901131717549](assets/image-20210901131717549.png) | ![image-20210901131521842](assets/image-20210901131521842.png) |
+| Average Reinforcement    | ![image-20210901131918936](assets/image-20210901131918936.png) | ![image-20210901131843657](assets/image-20210901131843657.png) | ![image-20210901131949567](assets/image-20210901131949567.png) |
+| Average Fear Graph       | ![image-20210901132528914](assets/image-20210901132528914.png) | ![image-20210901132335852](assets/image-20210901132335852.png) | ![image-20210901132224535](assets/image-20210901132224535.png) |
+| Average Happiness Graph  | ![image-20210901132555523](assets/image-20210901132555523.png) | ![image-20210901132417434](assets/image-20210901132417434.png) | ![image-20210901132608030](assets/image-20210901132608030.png) |
+| Average Anger Emotion    | ![image-20210901132749619](assets/image-20210901132749619.png) | ![image-20210901132818476](assets/image-20210901132818476.png) | ![image-20210901132733687](assets/image-20210901132733687.png) |
+| Average Sadness Emotion  | ![image-20210901133025993](assets/image-20210901133025993.png) | ![image-20210901132936825](assets/image-20210901132936825.png) | ![image-20210901133214816](assets/image-20210901133214816.png) |
+| Average Surprise Emotion | ![image-20210901133150461](assets/image-20210901133150461.png) | ![image-20210901133133181](assets/image-20210901133133181.png) | ![image-20210901133230569](assets/image-20210901133230569.png) |
+| Average Disgust Emotion  | ![image-20210901133159955](assets/image-20210901133159955.png) | ![image-20210901133010189](assets/image-20210901133010189.png) | ![image-20210901133239639](assets/image-20210901133239639.png) |
