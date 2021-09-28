@@ -16,11 +16,11 @@ At the beginning of the match, each agent must interact with all neighbors if th
 
 One observation is that the highest reinforcement is achieved when a defector interacts with all neighbors who all happens to be cooperators. Also notice that if a neighbor is a defector or a dead agent, the agent receives no reinforcement at all no matter what its status is. 
 
-## 2. Evaluation of Survival 
+## 2. Evaluation of Survival
 
 After interactions, each alive agent will have a total reinforcement received from interactions with its neighbors, which will determin if it will stay alive at end of the match. Survival Threshold is the value for determining whether the agent will stay alive. If the total reinforcement received during the match is higher than survival threshold, the agent survives; otherwise, the agent is dead. 
 
-## 3. Status Update 
+## 3. Status Update
 
 If a defector is surrounded mostly by cooperators, the agent is more likely to receive a higher reinforcement than its neighbors who are cooporators. During status update stage, there is a probability for a cooperating agent to change from a cooperator to a defector if it has a defecting neighbor who received higher reinforcement in current match. Defecting probability is the parameter for such probability, and it is set to 0.5 in this simulation. 
 
@@ -98,7 +98,7 @@ If `disgust_prev` from previous match is positive, `disgust_marker = 1`, else `d
 
 # Result
 
-Because of setup of the experiment, if there is a defecting neighbor at beginning of the simulation, every agent will defect and die eventually. Cascading failure happens because each cooperating agent tends to defect to emulate a higher immediate reinforcement, but eventually it will die because its could not receive any reinforcement from its neighbors who also choose to defect. Eventually the entire network is dead. A evolution of a network with a defecting agent sitting at the center is below for `T_i = 0.5`. 
+Because of setup of the experiment, if there is a defecting neighbor at beginning of the simulation, every agent will defect and die eventually. Cascading failure happens because each cooperating agent tends to defect to emulate a higher immediate reinforcement, but eventually it will die because its could not receive any reinforcement from its neighbors who also choose to defect. Eventually the entire network is dead. A evolution of a network with a defecting agent sitting at the center is below for `T_i = 0.5`. 
 
 | Match 0                                                      | Match 17                                                     | Match 29                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -126,3 +126,4 @@ To play around with parameters, we choose three values for `Ti`, which controls 
 | Average Sadness Emotion  | ![image-20210901133025993](assets/image-20210901133025993.png) | ![image-20210901132936825](assets/image-20210901132936825.png) | ![image-20210901133214816](assets/image-20210901133214816.png) |
 | Average Surprise Emotion | ![image-20210901133150461](assets/image-20210901133150461.png) | ![image-20210901133133181](assets/image-20210901133133181.png) | ![image-20210901133230569](assets/image-20210901133230569.png) |
 | Average Disgust Emotion  | ![image-20210901133159955](assets/image-20210901133159955.png) | ![image-20210901133010189](assets/image-20210901133010189.png) | ![image-20210901133239639](assets/image-20210901133239639.png) |
+
